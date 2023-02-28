@@ -8,27 +8,17 @@ function Student(name, gender, age) {
     this.subject = subjectName;
   }
   
-  Student.prototype.addMark = function(mark) {
-    if (this.marks === undefined) {
-      this.marks = [mark];   
-    } else {
-      this.marks.push(mark);
-    }    
-  }
-
   Student.prototype.addMarks = function (...marks) {
-    if (this.marks === undefined) { 
-      this.marks = marks;             
-    } else {
-      this.marks = this.marks.concat(marks);
-    }
+    if (this.marks === []) { 
+      this.marks = [...marks];             
+    } 
   }
   
   Student.prototype.getAverage = function () {
     if (this.marks === undefined) {
-      return 'Нет оценок';
+      return null;
     } else {
-      return this.marks.reduce( ( a, v ) => a + v, 0 ) / this.marks.length;
+      return this.marks.reduce( (( a, v ) => a + v) / this.marks.length);
     }
   }
   
