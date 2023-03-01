@@ -9,16 +9,17 @@ function Student(name, gender, age) {
   }
   
   Student.prototype.addMarks = function (...marks) {
-    if (this.marks === []) { 
-      this.marks = [...marks];             
+    if (this.marks) { 
+      this.marks.push(...marks);             
     } 
   }
   
   Student.prototype.getAverage = function () {
     if (this.marks === undefined) {
-      return null;
+      return 0;
     } else {
-      return this.marks.reduce( (( a, v ) => a + v) / this.marks.length);
+      this.marks.reduce(0);
+      return this.marks.reduce(( a, v ) => a + v / this.marks.length);
     }
   }
   
