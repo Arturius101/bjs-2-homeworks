@@ -18,7 +18,7 @@ function Student(name, gender, age) {
     if (this.marks === undefined) {
       return 0;
     } else {
-      this.marks.reduce(0);
+      this.marks = 0;
       return this.marks.reduce(( a, v ) => a + v / this.marks.length);
     }
   }
