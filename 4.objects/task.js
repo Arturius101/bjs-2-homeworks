@@ -14,13 +14,12 @@ function Student(name, gender, age) {
     } 
   }
   
-  Student.prototype.getAverage = function () {
-    this.marks = [];
-    this.marks.reduce = 0;
+  Student.prototype.getAverage = function () {    
     if (this.marks === undefined) {
       return 0;
     } else {      
-      return this.marks.reduce(( a, v ) => a + v, 0) / this.marks.length;
+      this.marks = 0;
+      return this.marks.reduce(( a, v ) => a + v) / this.marks.length;
     }
   }
   
@@ -43,5 +42,5 @@ function Student(name, gender, age) {
   student2.addMarks(2);
   student2.exclude('Низкая оценка')
 
-  console.log(student1); 
-  console.log(student2);
+  console.log(student1.marks); 
+  console.log(student2.marks);
