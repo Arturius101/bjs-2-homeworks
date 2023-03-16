@@ -2,6 +2,7 @@ function Student(name, gender, age) {
     this.name = name;
     this.gender = gender;
     this.age = age;    
+    this.marks = [];
 }
 
   Student.prototype.setSubject = function (subjectName) {
@@ -14,12 +15,11 @@ function Student(name, gender, age) {
     } 
   }
   
-  Student.prototype.getAverage = function () {    
-    if (this.marks === undefined) {
+  Student.prototype.getAverage = function () {   
+    if (this.marks === undefined || this.marks.length == 0) {
       return 0;
     } else {      
-      this.marks = 0;
-      return this.marks.reduce(( a, v ) => a + v) / this.marks.length;
+      return this.marks.reduce(( a, v ) => a + v, 0) / this.marks.length;
     }
   }
   
@@ -42,5 +42,5 @@ function Student(name, gender, age) {
   student2.addMarks(2);
   student2.exclude('Низкая оценка')
 
-  console.log(student1.marks); 
-  console.log(student2.marks);
+  console.log(student1); 
+  console.log(student2);
