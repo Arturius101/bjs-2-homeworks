@@ -23,13 +23,13 @@ function cachingDecoratorNew(func) {
 
 //Задача № 2
 function debounceDecoratorNew(func, delay) {
-    let timerId = null;
-    function wrapper (...args) {
-      if (timerId === null) {
-        func(...args);
-      }
-      clearTimeout(timerId);
-      timerId = setTimeout(() => timerId = null, delay);
-    }
-    return wrapper;
+  let timerId;
+
+  return function (...args) {
+    clearTimeout(timerId);
+
+    timerId = setTimeout(() => {
+      func.apply(this, args);
+      }, delay);
+  };
 } 
