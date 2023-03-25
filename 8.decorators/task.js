@@ -23,43 +23,22 @@ function cachingDecoratorNew(func) {
 
 //Задача № 2
 function debounceDecoratorNew(func, delay) {
-  let timeout;
-  let firstCall = true;
-
-  return function (...rest) {
-    if (firstCall) {
-      func.call(this, ...rest);
-      firstCall = false;
-      return
-    }
-
-    clearTimeout(timeout);
-
-    timeout = setTimeout(() => {
-      func.call(this, ...rest);
-      firstCall = true;
-    }, delay);
-  };
-} 
-
-function debounceDecorator2(func, delay) {
-  // Ваш код
   let timerId;
   let firstCall = true;
 
   function wrapper(...args) {
     if (firstCall) {
+      wrapper.allCount++;
       func.call(this, ...args);
       firstCall = false;
-      wrapper.count++;
-      return
+      wrapper.count++;      
     }
 
     clearTimeout(timerId);
 
     timerId = setTimeout(() => {
+      // wrapper.allCount++;
       func.call(this, ...args);
-      firstCall = true;
       wrapper.count++;
     }, delay);
   };
