@@ -27,23 +27,22 @@ function debounceDecoratorNew(func, delay) {
   let firstCall = true;
 
   function wrapper(...args) {
-    if (firstCall) {
-      wrapper.allCount++;
+    if (firstCall) {      
       func.call(this, ...args);
       firstCall = false;
       wrapper.count++;      
     }
 
+    wrapper.allCount++;
     clearTimeout(timerId);
 
     timerId = setTimeout(() => {
-      wrapper.allCount++;
       func.call(this, ...args);
       wrapper.count++;
     }, delay);
   };
 
+  wrapper.allCount = 0;
   wrapper.count = 0;
-
   return wrapper;
 }
